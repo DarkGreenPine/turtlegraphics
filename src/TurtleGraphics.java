@@ -1,5 +1,5 @@
 /**TurtleGraphics
- * Version 1.5
+ * Version 1.6
  * 5/22/2018
  */
 import java.util.Scanner;
@@ -8,13 +8,12 @@ public class TurtleGraphics {
 	public static void main(String[] args){
 	
 	//starts at top left (0, 0)
-	int xCoord = 0;
-	int yCoord = 0;
-	int arraySize = 10;
-	int distance;
-	int turtleArray[][] = new int[arraySize][arraySize];
+	int xCoord = 0; // the x or row coordinate the turtle is at
+	int yCoord = 0; // the y or column coordinate the turtle is at
+	int arraySize = 10; // size of the array the turtle moves in
+	int turtleArray[][] = new int[arraySize][arraySize]; // the array the turtle's path will be in
 	
-	Direction dir = Direction.right;//enum, start off facing right
+	Direction dir = Direction.right;//direction enum, start off facing right
 	
 	//fill in array with 0s initially
 	for(int i = 0; i<arraySize; i++){
@@ -24,10 +23,10 @@ public class TurtleGraphics {
 			}
 	
 	//menu
-	int menuEnd = 0;
-	int firstSelection;
-	int selectDirection;
-	int selectDistance = 0;
+	int menuEnd = 0; // used for the menu while loop
+	int firstSelection; // the initial user selection within the loop
+	int selectDirection; // the direction the user selects
+	int selectDistance = 0; // the distance the user selects
 	TurtleMover turt = new TurtleMover(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize);
 			
 			while (menuEnd!=1)

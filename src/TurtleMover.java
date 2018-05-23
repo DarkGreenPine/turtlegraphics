@@ -54,7 +54,6 @@ public class TurtleMover extends TurtleGraphics{
 			
 			//check and move left
 			if (direction == Direction.left){
-				System.out.println("Made it to move left");
 				for (int l = 0; l<=length; l++){
 					array[rowPos][colPos] = 1;
 					colPos--;
