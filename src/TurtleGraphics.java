@@ -1,18 +1,20 @@
 /**TurtleGraphics
- * Version 1.3
+ * Version 1.4
  * 5/22/2018
  */
 import java.util.Scanner;
 
 public class TurtleGraphics {
 	public static void main(String[] args){
-	int direction = 2;
+	
 	//starts at top left (0, 0)
 	int xCoord = 0;
 	int yCoord = 0;
 	int arraySize = 10;
 	int distance;
 	int turtleArray[][] = new int[arraySize][arraySize];
+	
+	Direction dir = Direction.right;//enum, start off facing right
 	
 	//fill in array with 0s initially
 	for(int i = 0; i<arraySize; i++){
@@ -26,7 +28,7 @@ public class TurtleGraphics {
 	int firstSelection;
 	int selectDirection;
 	int selectDistance = 0;
-	TurtleMover turt = new TurtleMover(selectDistance, direction, xCoord, yCoord, turtleArray, arraySize);
+	TurtleMover turt = new TurtleMover(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize);
 			
 			while (menuEnd!=1)
 			{
@@ -42,21 +44,22 @@ public class TurtleGraphics {
 				//check and respond to user selection
 				switch (firstSelection)
 				{
-				case 1:	System.out.println("Which direction? 1 for up, 2 for right, 3 for down, 4 for left\n");
+				case 1:	System.out.println("Which direction? Enter: 1 for up, 2 for right, 3 for down, 4 for left\n");
 						selectDirection = input.nextInt();
-						if (selectDirection == 1 || selectDirection == 2 || selectDirection == 3 || selectDirection == 4)
-						{
-							direction = selectDirection;
-						}
+						//check if the direction is ok and assign such that: 1 = up, 2 = right, 3 = down, 4 = left
+						if (selectDirection == 1) dir = Direction.up;
+						else if (selectDirection == 2) dir = Direction.right;
+						else if (selectDirection == 3) dir = Direction.down;
+						else if (selectDirection == 4) dir = Direction.left;
 						else System.out.println("Incorrect selection: Must be 1, 2, 3, or 4\n");
 						break;
 				case 2: System.out.println("How far would you like to move? Remember to stay within bounds\n");
 						selectDistance = input.nextInt();
 						//update turtle with desired distance
 						
-						turtleArray = turt.moveTurtle(selectDistance, direction, xCoord, yCoord, turtleArray, arraySize);
-						xCoord = turt.updateXCoord(direction, xCoord, selectDistance);
-						yCoord = turt.updateYCoord(direction, yCoord, selectDistance);
+						turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize);
+						xCoord = turt.updateXCoord(dir, xCoord, selectDistance);
+						yCoord = turt.updateYCoord(dir, yCoord, selectDistance);
 						break;
 				case 3: turt.paintPath(turtleArray, arraySize);
 						break;

@@ -1,10 +1,11 @@
 
 public class TurtleMover extends TurtleGraphics{
 
-	private int distance, direction, xCoord, yCoord, arraySize;
+	private int distance, xCoord, yCoord, arraySize;
 	private int[][] arr;
+	private Direction direction;
 	
-	public TurtleMover(int distance, int direction, int xCoord, int yCoord, int[][] arr, int arraySize){
+	public TurtleMover(int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
 		this.distance = distance;
 		this.direction = direction;
 		this.xCoord = xCoord;
@@ -19,7 +20,7 @@ public class TurtleMover extends TurtleGraphics{
 	 * updates array to have a 1 in the path the turtle took
 	 * returns updated array
 	 * */
- 	public int[][] moveTurtle(int distance, int direction, int xCoord, int yCoord, int[][] arr, int arraySize){
+ 	public int[][] moveTurtle(int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
 		int length = distance;
 		int rowPos = yCoord;
 		int colPos = xCoord;
@@ -28,28 +29,28 @@ public class TurtleMover extends TurtleGraphics{
 		if (isValidMove(distance, direction, xCoord, yCoord, arraySize) == true){
 			
 			//check up
-			if (direction == 1) {
+			if (direction == Direction.up) {
 				for(int i = 0; i<=length; i++){
 					array[rowPos][colPos] = 1;
 					rowPos--;
 				}
 			}
 			//check right
-			if (direction == 2){
+			if (direction == Direction.right){
 				for(int j = 0; j<=length; j++){
 					array[rowPos][colPos] = 1;
 					colPos++;
 				}
 			}
 			//check down
-			if (direction == 3){
+			if (direction == Direction.down){
 				for(int k = 0; k<=length; k++){
 					array[rowPos][colPos] = 1;
 					rowPos++;
 				}
 			}
 			//check left
-			if (direction == 4){
+			if (direction == Direction.left){
 				for (int l = 0; l<=length; l++){
 					array[rowPos][colPos] = 1;
 					colPos--;
@@ -66,43 +67,43 @@ public class TurtleMover extends TurtleGraphics{
  	
  	
 	//updates x coord
-	public int updateXCoord(int direction, int xCoord, int distance)
+	public int updateXCoord(Direction direction, int xCoord, int distance)
 	{
 		//right and left
-		if (direction == 2)return xCoord += distance;
-		else if (direction == 4) return xCoord -= distance;
+		if (direction == Direction.right)return xCoord += distance;
+		else if (direction == Direction.left) return xCoord -= distance;
 		else return xCoord;
 	}
 	
 	
 	//updates y coord
-	public int updateYCoord(int direction, int yCoord, int distance){
+	public int updateYCoord(Direction direction, int yCoord, int distance){
 		//up and down
-		if (direction == 1) return yCoord-=distance;
-		else if (direction == 3) return yCoord+=distance;
+		if (direction == Direction.up) return yCoord -= distance;
+		else if (direction == Direction.down) return yCoord += distance;
 		else return yCoord;
 	}
 	
 	
 	//checks if the desired move is within bounds
-	public boolean isValidMove(int distance, int direction, int xCoord, int yCoord, int arraySize){
+	public boolean isValidMove(int distance, Direction direction, int xCoord, int yCoord, int arraySize){
 		//checking up
-		if (direction == 1){
+		if (direction == Direction.up){
 			if (xCoord -  distance < 0) return false;
 			else return true;
 		}
 		//checking right
-		else if (direction == 2){
+		else if (direction == Direction.right){
 			if (yCoord+distance>arraySize) return false;
 			else return true;
 		}
 		//check down
-		else if (direction == 3){
+		else if (direction == Direction.down){
 			if (xCoord + distance > arraySize) return false;
 		    else return true;
 		}
 		//checking left
-		else if (direction == 4){
+		else if (direction == Direction.left){
 			if (yCoord - distance < arraySize) return false;
 			else return true;
 		}
