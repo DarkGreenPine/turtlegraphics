@@ -5,7 +5,7 @@ public class TurtleMover extends TurtleGraphics{
 	private int[][] arr;
 	private Direction direction;
 	
-	public TurtleMover(int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
+	public TurtleMover (int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
 		this.distance = distance;
 		this.direction = direction;
 		this.xCoord = xCoord;
@@ -28,29 +28,33 @@ public class TurtleMover extends TurtleGraphics{
 		//if move is valid
 		if (isValidMove(distance, direction, xCoord, yCoord, arraySize) == true){
 			
-			//check up
+			//check and move up
 			if (direction == Direction.up) {
 				for(int i = 0; i<=length; i++){
 					array[rowPos][colPos] = 1;
 					rowPos--;
 				}
 			}
-			//check right
+			
+			//check and move right
 			if (direction == Direction.right){
-				for(int j = 0; j<=length; j++){
+				for (int j = 0; j<=length; j++){
 					array[rowPos][colPos] = 1;
 					colPos++;
 				}
 			}
-			//check down
+			
+			//check and move down
 			if (direction == Direction.down){
-				for(int k = 0; k<=length; k++){
+				for (int k = 0; k<=length; k++){
 					array[rowPos][colPos] = 1;
 					rowPos++;
 				}
 			}
-			//check left
+			
+			//check and move left
 			if (direction == Direction.left){
+				System.out.println("Made it to move left");
 				for (int l = 0; l<=length; l++){
 					array[rowPos][colPos] = 1;
 					colPos--;
@@ -58,6 +62,7 @@ public class TurtleMover extends TurtleGraphics{
 			}
 			return array;
 		}
+		
 		//if move is not valid, return the initial array
 		else {
 			System.out.println("Out of Bounds");
@@ -71,7 +76,9 @@ public class TurtleMover extends TurtleGraphics{
 	{
 		//right and left
 		if (direction == Direction.right)return xCoord += distance;
+		
 		else if (direction == Direction.left) return xCoord -= distance;
+		
 		else return xCoord;
 	}
 	
@@ -80,7 +87,9 @@ public class TurtleMover extends TurtleGraphics{
 	public int updateYCoord(Direction direction, int yCoord, int distance){
 		//up and down
 		if (direction == Direction.up) return yCoord -= distance;
+		
 		else if (direction == Direction.down) return yCoord += distance;
+		
 		else return yCoord;
 	}
 	
@@ -92,21 +101,25 @@ public class TurtleMover extends TurtleGraphics{
 			if (xCoord -  distance < 0) return false;
 			else return true;
 		}
+		
 		//checking right
 		else if (direction == Direction.right){
 			if (yCoord+distance>arraySize) return false;
 			else return true;
 		}
+		
 		//check down
 		else if (direction == Direction.down){
 			if (xCoord + distance > arraySize) return false;
 		    else return true;
 		}
+		
 		//checking left
 		else if (direction == Direction.left){
-			if (yCoord - distance < arraySize) return false;
+			if (yCoord - distance < 0) return false;
 			else return true;
 		}
+		
 		else return false;
 	}
 	

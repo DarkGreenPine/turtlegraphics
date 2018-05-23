@@ -1,5 +1,5 @@
 /**TurtleGraphics
- * Version 1.4
+ * Version 1.5
  * 5/22/2018
  */
 import java.util.Scanner;
@@ -48,18 +48,26 @@ public class TurtleGraphics {
 						selectDirection = input.nextInt();
 						//check if the direction is ok and assign such that: 1 = up, 2 = right, 3 = down, 4 = left
 						if (selectDirection == 1) dir = Direction.up;
+						
 						else if (selectDirection == 2) dir = Direction.right;
+						
 						else if (selectDirection == 3) dir = Direction.down;
+						
 						else if (selectDirection == 4) dir = Direction.left;
+						
 						else System.out.println("Incorrect selection: Must be 1, 2, 3, or 4\n");
+						
 						break;
 				case 2: System.out.println("How far would you like to move? Remember to stay within bounds\n");
 						selectDistance = input.nextInt();
-						//update turtle with desired distance
 						
+						//update turtle with desired distance
 						turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize);
+						
 						xCoord = turt.updateXCoord(dir, xCoord, selectDistance);
+						
 						yCoord = turt.updateYCoord(dir, yCoord, selectDistance);
+						
 						break;
 				case 3: turt.paintPath(turtleArray, arraySize);
 						break;
