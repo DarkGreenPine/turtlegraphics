@@ -1,9 +1,13 @@
-/**TurtleGraphics
- * Version 1.6
- * 5/22/2018
- */
-import java.util.Scanner;
 
+import java.util.Scanner;
+/**
+ * TurtleGraphics allows a user to interact with an imaginary turtle
+ * that can be made to move around an array and print the path out. 
+ * @author Ian
+ * @version 1.7
+ * @since 1.0
+ * @date 5/22/2018 
+ */
 public class TurtleGraphics {
 	public static void main(String[] args){
 	
@@ -24,14 +28,14 @@ public class TurtleGraphics {
 	PathPainter paint = new PathPainter(turtleArray, arraySize);
 	
 	//fill in array with 0s initially
-	for(int i = 0; i<arraySize; i++){
-		for(int j = 0; j<arraySize; j++){
+	for(int i = 0; i<arraySize; i++) {
+		for(int j = 0; j<arraySize; j++) {
 			turtleArray[i][j] = 0;
-				}
-			}
+		}
+	}
 	
 			//menu
-	while (menuEnd!=1){
+	while (menuEnd!=1) {
 		
 		//ask for input
 		System.out.println("Press 1 to change direction\n"
@@ -43,7 +47,7 @@ public class TurtleGraphics {
 		firstSelection = input.nextInt();
 				
 		//check and respond to user selection
-		switch (firstSelection){
+		switch (firstSelection) {
 		case 1:	System.out.println("Which direction? Enter: 1 for up, 2 for right, 3 for down, 4 for left\n");
 				selectDirection = input.nextInt();
 				//check if the direction is ok and assign such that: 1 = up, 2 = right, 3 = down, 4 = left
@@ -73,12 +77,12 @@ public class TurtleGraphics {
 						
 				break;
 		case 3: paint.paintPath(turtleArray, arraySize);
-					break;
-				case 4: menuEnd = 1;
-						break;
-				default: System.out.println("Not a valid choice\n");
-						break;
-				}
+				break;
+		case 4: menuEnd = 1;
+				break;
+		default: System.out.println("Not a valid choice\n");
+				break;
+		}
 				
 			}
 	

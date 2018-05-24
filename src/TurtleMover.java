@@ -1,9 +1,14 @@
-
+/**
+ * TurtleMover contains methods for moving the turtle around the array. 
+ * @author Ian
+ *
+ */
 public class TurtleMover extends TurtleGraphics{
 
 	private int distance, xCoord, yCoord, arraySize;
 	private int[][] arr;
 	private Direction direction;
+	
 	
 	public TurtleMover (int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
 		this.distance = distance;
@@ -15,11 +20,18 @@ public class TurtleMover extends TurtleGraphics{
 	}
 	
 	
-	/* moves the turtle in the desired direction and distance
+	/**
+	 * moves the turtle in the desired direction and distance
 	 * calls isValidMove to check if it is within bounds
 	 * updates array to have a 1 in the path the turtle took
-	 * returns updated array
-	 * */
+	 * @param distance The distance to move forward
+	 * @param direction The direction the turtle is facing
+	 * @param xCoord The x or row coordinate of the current position
+	 * @param yCoord The y or column coordinate of the current position
+	 * @param arr The array the turtle moves in
+	 * @param arraySize The size of the array
+	 * @return The updated array
+	 */
  	public int[][] moveTurtle(int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
 		int length = distance;
 		int rowPos = yCoord;
@@ -27,35 +39,35 @@ public class TurtleMover extends TurtleGraphics{
 		int[][] array = arr;
 		
 		//if move is valid
-		if (isValidMove(distance, direction, xCoord, yCoord, arraySize) == true){
+		if (isValidMove(distance, direction, xCoord, yCoord, arraySize) == true) {
 			
 			//check and move up
 			if (direction == Direction.up) {
-				for(int i = 0; i<=length; i++){
+				for(int i = 0; i<=length; i++) {
 					array[rowPos][colPos] = 1;
 					rowPos--;
 				}
 			}
 			
 			//check and move right
-			if (direction == Direction.right){
-				for (int j = 0; j<=length; j++){
+			if (direction == Direction.right) {
+				for (int j = 0; j<=length; j++) {
 					array[rowPos][colPos] = 1;
 					colPos++;
 				}
 			}
 			
 			//check and move down
-			if (direction == Direction.down){
-				for (int k = 0; k<=length; k++){
+			if (direction == Direction.down) {
+				for (int k = 0; k<=length; k++) {
 					array[rowPos][colPos] = 1;
 					rowPos++;
 				}
 			}
 			
 			//check and move left
-			if (direction == Direction.left){
-				for (int l = 0; l<=length; l++){
+			if (direction == Direction.left) {
+				for (int l = 0; l<=length; l++) {
 					array[rowPos][colPos] = 1;
 					colPos--;
 				}
@@ -71,11 +83,15 @@ public class TurtleMover extends TurtleGraphics{
 	}
  	
  	
-	//updates x coord
-	public int updateXCoord(Direction direction, int xCoord, int distance)
-	{
+	/**updates x coord
+	 * @param direction The direction the turtle is facing
+	 * @param xCoord The x or row coordinate of the turtle's position
+	 * @param distance The distance to move forward
+	 * @return The updated x coordinate
+	 */
+	public int updateXCoord(Direction direction, int xCoord, int distance) {
 		//right and left
-		if (direction == Direction.right)return xCoord += distance;
+		if (direction == Direction.right) return xCoord += distance;
 		
 		else if (direction == Direction.left) return xCoord -= distance;
 		
@@ -83,8 +99,13 @@ public class TurtleMover extends TurtleGraphics{
 	}
 	
 	
-	//updates y coord
-	public int updateYCoord(Direction direction, int yCoord, int distance){
+	/**updates y coord
+	 * @param direction The direction the turtle is facing
+	 * @param yCoord The y or column coordinate of the turtle's position
+	 * @param distance The distance to move forward
+	 * @return The updated y coordinate
+	 */
+	public int updateYCoord(Direction direction, int yCoord, int distance) {
 		//up and down
 		if (direction == Direction.up) return yCoord -= distance;
 		
@@ -94,28 +115,36 @@ public class TurtleMover extends TurtleGraphics{
 	}
 	
 	
-	//checks if the desired move is within bounds
-	public boolean isValidMove(int distance, Direction direction, int xCoord, int yCoord, int arraySize){
+	/**checks if the desired move is within bounds
+	 * 
+	 * @param distance The distance to move forward
+	 * @param direction The direction the turtle is facing
+	 * @param xCoord The x or row position of the turtle
+	 * @param yCoord The y or column position of the turtle
+	 * @param arraySize The size of the array
+	 * @return True or false 
+	 */
+	public boolean isValidMove(int distance, Direction direction, int xCoord, int yCoord, int arraySize) {
 		//checking up
-		if (direction == Direction.up){
+		if (direction == Direction.up) {
 			if (xCoord -  distance < 0) return false;
 			else return true;
 		}
 		
 		//checking right
-		else if (direction == Direction.right){
+		else if (direction == Direction.right) {
 			if (yCoord+distance>arraySize) return false;
 			else return true;
 		}
 		
 		//check down
-		else if (direction == Direction.down){
+		else if (direction == Direction.down) {
 			if (xCoord + distance > arraySize) return false;
 		    else return true;
 		}
 		
 		//checking left
-		else if (direction == Direction.left){
+		else if (direction == Direction.left) {
 			if (yCoord - distance < 0) return false;
 			else return true;
 		}
