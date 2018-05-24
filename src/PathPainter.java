@@ -1,5 +1,5 @@
 /**
- * PathPainter contains the method to print the contents of the array
+ * PathPainter contains the method to print the contents of the array and clear it
  * to the screen. 
  * @author Ian
  *
@@ -36,5 +36,17 @@ public class PathPainter {
 					length++;
 				}
 			}
+		}
+		
+		
+		public int[][] clearPath(int[][] array, int arraySize) {
+			
+			for (int i = 0; i < arraySize; i++) {
+				for ( int j = 0; j < arraySize; j++) {
+					array[i][j] = 0;
+				}
+			}
+			
+			return array;
 		}
 }

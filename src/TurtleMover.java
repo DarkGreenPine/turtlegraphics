@@ -8,15 +8,17 @@ public class TurtleMover {
 	private int distance, xCoord, yCoord, arraySize;
 	private int[][] arr;
 	private Direction direction;
+	private Direction penPosition; // pen position
 	
 	
-	public TurtleMover (int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
+	public TurtleMover (int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize, Direction penPosition){
 		this.distance = distance;
 		this.direction = direction;
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
 		this.arr = arr;
 		this.arraySize = arraySize;
+		this.penPosition = penPosition;
 	}
 	
 	
@@ -32,7 +34,7 @@ public class TurtleMover {
 	 * @param arraySize The size of the array
 	 * @return The updated array
 	 */
- 	public int[][] moveTurtle(int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize){
+ 	public int[][] moveTurtle(int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize, Direction penPosition){
 		int length = distance;
 		int rowPos = yCoord;
 		int colPos = xCoord;
@@ -44,7 +46,7 @@ public class TurtleMover {
 			//check and move up
 			if (direction == Direction.up) {
 				for(int i = 0; i<=length; i++) {
-					array[rowPos][colPos] = 1;
+					if (penPosition == Direction.down) array[rowPos][colPos] = 1;
 					rowPos--;
 				}
 			}
@@ -52,7 +54,7 @@ public class TurtleMover {
 			//check and move right
 			if (direction == Direction.right) {
 				for (int j = 0; j<=length; j++) {
-					array[rowPos][colPos] = 1;
+					if (penPosition == Direction.down) array[rowPos][colPos] = 1;
 					colPos++;
 				}
 			}
@@ -60,7 +62,7 @@ public class TurtleMover {
 			//check and move down
 			if (direction == Direction.down) {
 				for (int k = 0; k<=length; k++) {
-					array[rowPos][colPos] = 1;
+					if (penPosition == Direction.down) array[rowPos][colPos] = 1;
 					rowPos++;
 				}
 			}

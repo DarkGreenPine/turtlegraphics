@@ -4,7 +4,7 @@ import java.util.Scanner;
  * TurtleGraphics allows a user to interact with an imaginary turtle
  * that can be made to move around an array and print the path out. 
  * @author Ian
- * @version 1.7
+ * @version 1.8
  * @since 1.0
  * @date 5/22/2018 
  */
@@ -22,9 +22,10 @@ public class TurtleGraphics {
 	int selectDirection; // the direction the user selects
 	int selectDistance = 0; // the distance the user selects
 	Direction dir = Direction.right;//direction enum, start off facing right
+	Direction penPosition = Direction.down; // pen direction enum, pen starts off in the down(drawing) position
 	
-	//constructors
-	TurtleMover turt = new TurtleMover(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize);
+	//calling constructors
+	TurtleMover turt = new TurtleMover(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize, penPosition);
 	PathPainter paint = new PathPainter(turtleArray, arraySize);
 	
 	//fill in array with 0s initially
@@ -38,10 +39,13 @@ public class TurtleGraphics {
 	while (menuEnd!=1) {
 		
 		//ask for input
-		System.out.println("Press 1 to change direction\n"
+		System.out.println("\nPress 1 to change direction\n"
 					+ "Press 2 to move forward\n"
 					+ "Press 3 to print the current map\n"
-					+ "Press 4 to end\n\n");
+					+ "Press 4 to set pen position up and stop drawing\n"
+					+ "Press 5 to set pen position to down and start drawing\n"
+					+ "Press 6 to clear the map\n"
+					+ "Press 7 to end\n\n");
 				
 		Scanner input = new Scanner(System.in);
 		firstSelection = input.nextInt();
@@ -64,21 +68,28 @@ public class TurtleGraphics {
 				break;
 		case 2: System.out.println("How far would you like to move? Remember to stay within bounds\n"
 				+ "Current Position: (" +xCoord+ ", " + yCoord + ")\n"
-				+ "Size of Matrix: " + arraySize + "\n");
+				+ "Size of Matrix: " + arraySize + "\n"
+				+ "Pen position: " + penPosition);
 		
 		        selectDistance = input.nextInt();
 						
 				//update turtle with desired distance
-				turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize);
+				turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize, penPosition);
 						
 				xCoord = turt.updateXCoord(dir, xCoord, selectDistance);
 						
 				yCoord = turt.updateYCoord(dir, yCoord, selectDistance);
 						
 				break;
-		case 3: paint.paintPath(turtleArray, arraySize);
+		case 3: paint.paintPath(turtleArray, arraySize); // paint the path
 				break;
-		case 4: menuEnd = 1;
+		case 4: penPosition = Direction.up; // set pen position up
+				break;
+		case 5: penPosition = Direction.down; // set pen position down
+				break;
+		case 6: paint.clearPath(turtleArray, arraySize); // reset array to all 0s
+			    break;
+		case 7: menuEnd = 1; // end the menu loop
 				break;
 		default: System.out.println("Not a valid choice\n");
 				break;
