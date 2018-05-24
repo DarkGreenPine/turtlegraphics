@@ -4,7 +4,7 @@
  * @author Ian
  *
  */
-public class PathPainter extends TurtleGraphics{
+public class PathPainter {
 
 	private int[][] arr;
 	private int arraySize;

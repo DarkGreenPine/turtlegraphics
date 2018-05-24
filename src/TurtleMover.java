@@ -3,7 +3,7 @@
  * @author Ian
  *
  */
-public class TurtleMover extends TurtleGraphics{
+public class TurtleMover {
 
 	private int distance, xCoord, yCoord, arraySize;
 	private int[][] arr;
