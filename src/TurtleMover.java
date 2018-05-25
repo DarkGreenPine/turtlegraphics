@@ -85,7 +85,7 @@ public class TurtleMover {
 	}
  	
  	
-	/**updates x coord
+	/**updates x coordinate
 	 * @param direction The direction the turtle is facing
 	 * @param xCoord The x or row coordinate of the turtle's position
 	 * @param distance The distance to move forward
@@ -101,7 +101,7 @@ public class TurtleMover {
 	}
 	
 	
-	/**updates y coord
+	/**updates y coordinate
 	 * @param direction The direction the turtle is facing
 	 * @param yCoord The y or column coordinate of the turtle's position
 	 * @param distance The distance to move forward
@@ -117,8 +117,8 @@ public class TurtleMover {
 	}
 	
 	
-	/**checks if the desired move is within bounds
-	 * 
+	/**
+	 * checks if the desired move is within bounds
 	 * @param distance The distance to move forward
 	 * @param direction The direction the turtle is facing
 	 * @param xCoord The x or row position of the turtle

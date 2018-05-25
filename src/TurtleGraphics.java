@@ -9,6 +9,7 @@ import java.util.Scanner;
  * @date 5/22/2018 
  */
 public class TurtleGraphics {
+	
 	public static void main(String[] args){
 	
 	//position starts at top left (0, 0)
@@ -17,12 +18,14 @@ public class TurtleGraphics {
 	int arraySize = 10; // size of the array the turtle moves in
 	int turtleArray[][] = new int[arraySize][arraySize]; // the array the turtle's path will be in
 	
+	Direction dir = Direction.right; // turtle direction enum, start off facing right
+	Direction penPosition = Direction.down; // pen direction enum, pen starts off in the down(drawing) position
+	
+	// menu variables
 	int menuEnd = 0; // used for the menu while loop
 	int firstSelection; // the initial user selection within the loop
 	int selectDirection; // the direction the user selects
 	int selectDistance = 0; // the distance the user selects
-	Direction dir = Direction.right;//direction enum, start off facing right
-	Direction penPosition = Direction.down; // pen direction enum, pen starts off in the down(drawing) position
 	
 	//calling constructors
 	TurtleMover turt = new TurtleMover(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize, penPosition);
@@ -35,8 +38,8 @@ public class TurtleGraphics {
 		}
 	}
 	
-			//menu
-	while (menuEnd!=1) {
+	//menu
+	while (menuEnd != 1) {
 		
 		//ask for input
 		System.out.println("\nPress 1 to change direction\n"
@@ -45,7 +48,8 @@ public class TurtleGraphics {
 					+ "Press 4 to set pen position up and stop drawing\n"
 					+ "Press 5 to set pen position to down and start drawing\n"
 					+ "Press 6 to clear the map\n"
-					+ "Press 7 to end\n\n");
+					+ "Press 7 to paint a colored in map\n"
+					+ "Press 8 to end\n\n");
 				
 		Scanner input = new Scanner(System.in);
 		firstSelection = input.nextInt();
@@ -89,7 +93,9 @@ public class TurtleGraphics {
 				break;
 		case 6: paint.clearPath(turtleArray, arraySize); // reset array to all 0s
 			    break;
-		case 7: menuEnd = 1; // end the menu loop
+		case 7: paint.newFramePainter(turtleArray, arraySize);
+				break;
+		case 8: menuEnd = 1; // end the menu loop
 				break;
 		default: System.out.println("Not a valid choice\n");
 				break;
