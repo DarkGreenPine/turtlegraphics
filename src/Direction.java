@@ -8,7 +8,4 @@ public enum Direction {
 	right,
 	down,
 	left;
-	
-	Direction(){};
-	
 }

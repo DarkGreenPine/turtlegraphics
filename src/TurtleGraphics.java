@@ -4,7 +4,7 @@ import java.util.Scanner;
  * TurtleGraphics allows a user to interact with an imaginary turtle
  * that can be made to move around an array and print the path out. 
  * @author Ian
- * @version 1.8
+ * @version 1.9
  * @since 1.0
  * @date 5/22/2018 
  */
