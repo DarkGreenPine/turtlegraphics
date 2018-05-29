@@ -53,7 +53,6 @@ public class PathPainter {
 			return array;
 		}
 		
-		
 		/**
 		 * Uses StdDraw to paint the path with color
 		 * @param array The array to be cleared

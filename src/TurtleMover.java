@@ -21,7 +21,6 @@ public class TurtleMover {
 		this.penPosition = penPosition;
 	}
 	
-	
 	/**
 	 * moves the turtle in the desired direction and distance
 	 * calls isValidMove to check if it is within bounds
@@ -82,40 +81,44 @@ public class TurtleMover {
 			System.out.println("Out of Bounds");
 			return arr;
 		}
-	}
- 	
+ 	}
  	
 	/**updates x coordinate
 	 * @param direction The direction the turtle is facing
 	 * @param xCoord The x or row coordinate of the turtle's position
+	 * @param yCoord The y or column coordinate of the turtle's position
 	 * @param distance The distance to move forward
+	 * @param arraySize The size of the array
 	 * @return The updated x coordinate
 	 */
-	public int updateXCoord(Direction direction, int xCoord, int distance) {
+	public int updateXCoord(Direction direction, int xCoord, int yCoord, int distance, int arraySize) {
 		//right and left
-		if (direction == Direction.right) return xCoord += distance;
-		
-		else if (direction == Direction.left) return xCoord -= distance;
+		if (isValidMove(distance, direction, xCoord, yCoord, arraySize)) {
+			if (direction == Direction.right) return xCoord += distance;
+			else if (direction == Direction.left) return xCoord -= distance;
+			else return xCoord; 
+		}
 		
 		else return xCoord;
 	}
 	
-	
 	/**updates y coordinate
 	 * @param direction The direction the turtle is facing
+	 * @param xCoord The x or row coordinate of the turtle's position
 	 * @param yCoord The y or column coordinate of the turtle's position
 	 * @param distance The distance to move forward
+	 * @param arraySize The size of the array
 	 * @return The updated y coordinate
 	 */
-	public int updateYCoord(Direction direction, int yCoord, int distance) {
+	public int updateYCoord(Direction direction, int xCoord, int yCoord, int distance, int arraySize) {
 		//up and down
-		if (direction == Direction.up) return yCoord -= distance;
-		
-		else if (direction == Direction.down) return yCoord += distance;
-		
+		if (isValidMove(distance, direction, xCoord, yCoord, arraySize)) {
+			if (direction == Direction.up) return yCoord -= distance;
+			else if (direction == Direction.down) return yCoord += distance;
+			else return yCoord;
+		}
 		else return yCoord;
 	}
-	
 	
 	/**
 	 * checks if the desired move is within bounds

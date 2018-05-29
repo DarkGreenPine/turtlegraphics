@@ -4,7 +4,7 @@ import java.util.Scanner;
  * TurtleGraphics allows a user to interact with an imaginary turtle
  * that can be made to move around an array and print the path out. 
  * @author Ian
- * @version 1.9
+ * @version 2.0
  * @since 1.0
  * @date 5/22/2018 
  */
@@ -80,9 +80,9 @@ public class TurtleGraphics {
 				//update turtle with desired distance
 				turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize, penPosition);
 						
-				xCoord = turt.updateXCoord(dir, xCoord, selectDistance);
+				xCoord = turt.updateXCoord(dir, xCoord, yCoord, selectDistance, arraySize);
 						
-				yCoord = turt.updateYCoord(dir, yCoord, selectDistance);
+				yCoord = turt.updateYCoord(dir, xCoord, yCoord, selectDistance, arraySize);
 						
 				break;
 		case 3: paint.paintPath(turtleArray, arraySize); // paint the path
