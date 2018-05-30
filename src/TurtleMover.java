@@ -30,22 +30,21 @@ public class TurtleMover {
 	 * @param xCoord The x or row coordinate of the current position
 	 * @param yCoord The y or column coordinate of the current position
 	 * @param arr The array the turtle moves in
-	 * @param arraySize The size of the array
 	 * @return The updated array
 	 */
- 	public int[][] moveTurtle(int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize, Direction penPosition){
+ 	public int[][] moveTurtle(int distance, Direction direction, int xCoord, int yCoord, Direction penPosition){
 		int length = distance;
 		int rowPos = yCoord;
 		int colPos = xCoord;
-		int[][] array = arr;
+		
 		
 		//if move is valid
-		if (isValidMove(distance, direction, xCoord, yCoord, arraySize) == true) {
+		if (isValidMove(distance, direction, xCoord, yCoord) == true) {
 			
 			//check and move up
 			if (direction == Direction.up) {
 				for(int i = 0; i<=length; i++) {
-					if (penPosition == Direction.down) array[rowPos][colPos] = 1;
+					if (penPosition == Direction.down) arr[rowPos][colPos] = 1;
 					rowPos--;
 				}
 			}
@@ -53,7 +52,7 @@ public class TurtleMover {
 			//check and move right
 			if (direction == Direction.right) {
 				for (int j = 0; j<=length; j++) {
-					if (penPosition == Direction.down) array[rowPos][colPos] = 1;
+					if (penPosition == Direction.down) arr[rowPos][colPos] = 1;
 					colPos++;
 				}
 			}
@@ -61,7 +60,7 @@ public class TurtleMover {
 			//check and move down
 			if (direction == Direction.down) {
 				for (int k = 0; k<=length; k++) {
-					if (penPosition == Direction.down) array[rowPos][colPos] = 1;
+					if (penPosition == Direction.down) arr[rowPos][colPos] = 1;
 					rowPos++;
 				}
 			}
@@ -69,11 +68,11 @@ public class TurtleMover {
 			//check and move left
 			if (direction == Direction.left) {
 				for (int l = 0; l<=length; l++) {
-					array[rowPos][colPos] = 1;
+					arr[rowPos][colPos] = 1;
 					colPos--;
 				}
 			}
-			return array;
+			return arr;
 		}
 		
 		//if move is not valid, return the initial array
@@ -88,12 +87,12 @@ public class TurtleMover {
 	 * @param xCoord The x or row coordinate of the turtle's position
 	 * @param yCoord The y or column coordinate of the turtle's position
 	 * @param distance The distance to move forward
-	 * @param arraySize The size of the array
 	 * @return The updated x coordinate
 	 */
-	public int updateXCoord(Direction direction, int xCoord, int yCoord, int distance, int arraySize) {
+	public int updateXCoord(Direction direction, int xCoord, int yCoord, int distance) {
+		
 		//right and left
-		if (isValidMove(distance, direction, xCoord, yCoord, arraySize)) {
+		if (isValidMove(distance, direction, xCoord, yCoord)) {
 			if (direction == Direction.right) return xCoord += distance;
 			else if (direction == Direction.left) return xCoord -= distance;
 			else return xCoord; 
@@ -110,9 +109,10 @@ public class TurtleMover {
 	 * @param arraySize The size of the array
 	 * @return The updated y coordinate
 	 */
-	public int updateYCoord(Direction direction, int xCoord, int yCoord, int distance, int arraySize) {
+	public int updateYCoord(Direction direction, int xCoord, int yCoord, int distance) {
+		
 		//up and down
-		if (isValidMove(distance, direction, xCoord, yCoord, arraySize)) {
+		if (isValidMove(distance, direction, xCoord, yCoord)) {
 			if (direction == Direction.up) return yCoord -= distance;
 			else if (direction == Direction.down) return yCoord += distance;
 			else return yCoord;
@@ -126,10 +126,10 @@ public class TurtleMover {
 	 * @param direction The direction the turtle is facing
 	 * @param xCoord The x or row position of the turtle
 	 * @param yCoord The y or column position of the turtle
-	 * @param arraySize The size of the array
 	 * @return True or false 
 	 */
-	public boolean isValidMove(int distance, Direction direction, int xCoord, int yCoord, int arraySize) {
+	public boolean isValidMove(int distance, Direction direction, int xCoord, int yCoord) {
+		
 		//checking up
 		if (direction == Direction.up) {
 			if (xCoord -  distance < 0) return false;

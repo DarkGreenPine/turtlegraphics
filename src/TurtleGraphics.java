@@ -4,7 +4,7 @@ import java.util.Scanner;
  * TurtleGraphics allows a user to interact with an imaginary turtle
  * that can be made to move around an array and print the path out. 
  * @author Ian
- * @version 2.0
+ * @version 2.1
  * @since 1.0
  * @date 5/22/2018 
  */
@@ -32,8 +32,8 @@ public class TurtleGraphics {
 	PathPainter paint = new PathPainter(turtleArray, arraySize);
 	
 	//fill in array with 0s initially
-	for(int i = 0; i<arraySize; i++) {
-		for(int j = 0; j<arraySize; j++) {
+	for (int i = 0; i<arraySize; i++) {
+		for (int j = 0; j<arraySize; j++) {
 			turtleArray[i][j] = 0;
 		}
 	}
@@ -58,6 +58,7 @@ public class TurtleGraphics {
 		switch (firstSelection) {
 		case 1:	System.out.println("Which direction? Enter: 1 for up, 2 for right, 3 for down, 4 for left\n");
 				selectDirection = input.nextInt();
+				
 				//check if the direction is ok and assign such that: 1 = up, 2 = right, 3 = down, 4 = left
 				if (selectDirection == 1) dir = Direction.up;
 						
@@ -78,22 +79,22 @@ public class TurtleGraphics {
 		        selectDistance = input.nextInt();
 						
 				//update turtle with desired distance
-				turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize, penPosition);
+				turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, penPosition);
 						
-				xCoord = turt.updateXCoord(dir, xCoord, yCoord, selectDistance, arraySize);
+				xCoord = turt.updateXCoord(dir, xCoord, yCoord, selectDistance);
 						
-				yCoord = turt.updateYCoord(dir, xCoord, yCoord, selectDistance, arraySize);
+				yCoord = turt.updateYCoord(dir, xCoord, yCoord, selectDistance);
 						
 				break;
-		case 3: paint.paintPath(turtleArray, arraySize); // paint the path
+		case 3: paint.paintPath(turtleArray); // paint the path
 				break;
 		case 4: penPosition = Direction.up; // set pen position up
 				break;
 		case 5: penPosition = Direction.down; // set pen position down
 				break;
-		case 6: paint.clearPath(turtleArray, arraySize); // reset array to all 0s
+		case 6: paint.clearPath(turtleArray); // reset array to all 0s
 			    break;
-		case 7: paint.newFramePainter(turtleArray, arraySize);
+		case 7: paint.newFramePainter(turtleArray); // draw the path in a new frame
 				break;
 		case 8: menuEnd = 1; // end the menu loop
 				break;
