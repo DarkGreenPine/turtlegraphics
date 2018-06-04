@@ -12,7 +12,7 @@ public class TurtleGraphics {
 	
 	public static void main(String[] args){
 	
-	//position starts at top left (0, 0)
+	// position starts at top left (0, 0)
 	int xCoord = 0; // the x or row coordinate the turtle is at
 	int yCoord = 0; // the y or column coordinate the turtle is at
 	int arraySize = 10; // size of the array the turtle moves in
@@ -27,21 +27,21 @@ public class TurtleGraphics {
 	int selectDirection; // the direction the user selects
 	int selectDistance = 0; // the distance the user selects
 	
-	//calling constructors
+	// calling constructors
 	TurtleMover turt = new TurtleMover(selectDistance, dir, xCoord, yCoord, turtleArray, arraySize, penPosition);
 	PathPainter paint = new PathPainter(turtleArray, arraySize);
 	
-	//fill in array with 0s initially
+	// fill in array with 0s initially
 	for (int i = 0; i<arraySize; i++) {
 		for (int j = 0; j<arraySize; j++) {
 			turtleArray[i][j] = 0;
 		}
 	}
 	
-	//menu
+	// menu
 	while (menuEnd != 1) {
 		
-		//ask for input
+		// ask for input
 		System.out.println("\nPress 1 to change direction\n"
 					+ "Press 2 to move forward\n"
 					+ "Press 3 to print the current map\n"
@@ -54,12 +54,12 @@ public class TurtleGraphics {
 		Scanner input = new Scanner(System.in);
 		firstSelection = input.nextInt();
 				
-		//check and respond to user selection
+		// check and respond to user selection
 		switch (firstSelection) {
 		case 1:	System.out.println("Which direction? Enter: 1 for up, 2 for right, 3 for down, 4 for left\n");
 				selectDirection = input.nextInt();
 				
-				//check if the direction is ok and assign such that: 1 = up, 2 = right, 3 = down, 4 = left
+				// check if the direction is ok and assign such that: 1 = up, 2 = right, 3 = down, 4 = left
 				if (selectDirection == 1) dir = Direction.up;
 						
 				else if (selectDirection == 2) dir = Direction.right;
@@ -78,7 +78,7 @@ public class TurtleGraphics {
 		
 		        selectDistance = input.nextInt();
 						
-				//update turtle with desired distance
+				// update turtle with desired distance
 				turtleArray = turt.moveTurtle(selectDistance, dir, xCoord, yCoord, penPosition);
 						
 				xCoord = turt.updateXCoord(dir, xCoord, yCoord, selectDistance);

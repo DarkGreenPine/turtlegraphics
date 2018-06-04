@@ -7,21 +7,22 @@ public class PathPainter {
 	private int[][] arr;
 	private int arraySize;
 	
+	// constructor
 	PathPainter(int[][] arr, int arraySize) {
 		this.arr = arr;
 		this.arraySize = arraySize;
 	}
+	
 	/**prints out the path, if a 1 is encountered, it prints a '*' symbol 
 	 * @param array The array that the turtle moves in
-	 * @param arraySize The size of the array. 
 	 */
 	public void paintPath(int[][] array) {
 		int length = 0;
 			
-		//checks each position in the array and prints a * if a 1 is encountered
+		// checks each position in the array and prints a * if a 1 is encountered
 		for (int i = 0; i<arraySize; i++) {
 			for (int j = 0; j<arraySize; j++) {
-				//new line if at end of array
+				// new line if at end of array
 				if (length >= arraySize) {
 					System.out.print("\n");
 					length = 0;
@@ -39,7 +40,6 @@ public class PathPainter {
 	/**
 	 * Clears the board by resetting the array to all 0s
 	 * @param array The array to be cleared
-	 * @param arraySize The size of the array
 	 * @return The cleared array
 	 */
 	public int[][] clearPath(int[][] arr) {
@@ -56,7 +56,6 @@ public class PathPainter {
 	/**
 	 * Uses StdDraw to paint the path with color
 	 * @param array The array to be cleared
-	 * @param arraySize The size of the array
 	 */
 	public void newFramePainter(int[][] array) {
 			

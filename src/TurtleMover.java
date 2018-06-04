@@ -8,9 +8,9 @@ public class TurtleMover {
 	private int distance, xCoord, yCoord, arraySize;
 	private int[][] arr;
 	private Direction direction;
-	private Direction penPosition; // pen position
+	private Direction penPosition;
 	
-	
+	// constructor
 	public TurtleMover (int distance, Direction direction, int xCoord, int yCoord, int[][] arr, int arraySize, Direction penPosition){
 		this.distance = distance;
 		this.direction = direction;
@@ -29,7 +29,7 @@ public class TurtleMover {
 	 * @param direction The direction the turtle is facing
 	 * @param xCoord The x or row coordinate of the current position
 	 * @param yCoord The y or column coordinate of the current position
-	 * @param arr The array the turtle moves in
+	 * @param penPosition The position the pen is at, up or down
 	 * @return The updated array
 	 */
  	public int[][] moveTurtle(int distance, Direction direction, int xCoord, int yCoord, Direction penPosition){
@@ -38,10 +38,10 @@ public class TurtleMover {
 		int colPos = xCoord;
 		
 		
-		//if move is valid
+		// if move is valid
 		if (isValidMove(distance, direction, xCoord, yCoord) == true) {
 			
-			//check and move up
+			// check and move up
 			if (direction == Direction.up) {
 				for(int i = 0; i<=length; i++) {
 					if (penPosition == Direction.down) arr[rowPos][colPos] = 1;
@@ -49,7 +49,7 @@ public class TurtleMover {
 				}
 			}
 			
-			//check and move right
+			// check and move right
 			if (direction == Direction.right) {
 				for (int j = 0; j<=length; j++) {
 					if (penPosition == Direction.down) arr[rowPos][colPos] = 1;
@@ -57,7 +57,7 @@ public class TurtleMover {
 				}
 			}
 			
-			//check and move down
+			// check and move down
 			if (direction == Direction.down) {
 				for (int k = 0; k<=length; k++) {
 					if (penPosition == Direction.down) arr[rowPos][colPos] = 1;
@@ -65,7 +65,7 @@ public class TurtleMover {
 				}
 			}
 			
-			//check and move left
+			// check and move left
 			if (direction == Direction.left) {
 				for (int l = 0; l<=length; l++) {
 					arr[rowPos][colPos] = 1;
@@ -75,7 +75,7 @@ public class TurtleMover {
 			return arr;
 		}
 		
-		//if move is not valid, return the initial array
+		// if move is not valid, return the initial array
 		else {
 			System.out.println("Out of Bounds");
 			return arr;
@@ -91,7 +91,7 @@ public class TurtleMover {
 	 */
 	public int updateXCoord(Direction direction, int xCoord, int yCoord, int distance) {
 		
-		//right and left
+		// right and left
 		if (isValidMove(distance, direction, xCoord, yCoord)) {
 			if (direction == Direction.right) return xCoord += distance;
 			else if (direction == Direction.left) return xCoord -= distance;
@@ -106,12 +106,11 @@ public class TurtleMover {
 	 * @param xCoord The x or row coordinate of the turtle's position
 	 * @param yCoord The y or column coordinate of the turtle's position
 	 * @param distance The distance to move forward
-	 * @param arraySize The size of the array
 	 * @return The updated y coordinate
 	 */
 	public int updateYCoord(Direction direction, int xCoord, int yCoord, int distance) {
 		
-		//up and down
+		// up and down
 		if (isValidMove(distance, direction, xCoord, yCoord)) {
 			if (direction == Direction.up) return yCoord -= distance;
 			else if (direction == Direction.down) return yCoord += distance;
@@ -130,27 +129,27 @@ public class TurtleMover {
 	 */
 	public boolean isValidMove(int distance, Direction direction, int xCoord, int yCoord) {
 		
-		//checking up
+		// checking up
 		if (direction == Direction.up) {
-			if (xCoord -  distance < 0) return false;
+			if ((xCoord -  distance) < 0) return false;
 			else return true;
 		}
 		
-		//checking right
+		// checking right
 		else if (direction == Direction.right) {
-			if (yCoord+distance>arraySize) return false;
+			if ((yCoord + distance) > arraySize) return false;
 			else return true;
 		}
 		
-		//check down
+		// check down
 		else if (direction == Direction.down) {
-			if (xCoord + distance > arraySize) return false;
+			if ((xCoord + distance) > arraySize) return false;
 		    else return true;
 		}
 		
-		//checking left
+		// checking left
 		else if (direction == Direction.left) {
-			if (yCoord - distance < 0) return false;
+			if ((yCoord - distance) < 0) return false;
 			else return true;
 		}
 		
